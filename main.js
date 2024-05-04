@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //set the message about progress value
   //start downloading the file
   let pct = 0;
-  const url = 'https://picsum.photos/id/237/1500/1200';
+  const url = 'https://picsum.photos/id/237/4500/4200';
 
   fetch(url)
     .then((response) => {
