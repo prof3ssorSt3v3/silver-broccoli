@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Progress Display for File Downloads</title>
+    <style>
+      :root {
+        --bgcolor: hsl(220, 20%, 70%);
+        --focuscolor: hsl(220, 80%, 50%);
+        --txtcolor: hsl(20, 80%, 50%);
+        --percentage: 0;
+        --size: 150px;
+        --circ: 251.33; /* circumference = diameter * PI */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      img {
+        width: 90%;
+      }
+      .progress {
+        width: var(--size);
+        height: var(--size);
+      }
+      .circle-background {
+        stroke: var(--bgcolor);
+        stroke-width: 10;
+        fill: none;
+      }
+      .circle-progress {
+        stroke: var(--focuscolor);
+        stroke-width: 6;
+        stroke-dasharray: var(--circ);
+        stroke-dashoffset: calc(var(--circ) - (var(--circ) * var(--percentage) / 100));
+        fill: none;
+        transition: stroke-dashoffset 0.3s linear;
+      }
+      .pct-text {
+        fill: var(--txtcolor);
+        font-size: 40px;
+        text-anchor: middle;
+      }
+    </style>
+    <script src="./main.js" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Tracking Download Progress</h1>
+      <h2>Circular SVG Progress Meter</h2>
+    </header>
+    <main>
+      <svg class="progress" viewBox="0, 0, 100, 100">
+        <circle class="circle-background" cx="50" cy="50" r="40" />
+        <circle class="circle-progress" cx="50" cy="50" r="40" />
+        <text class="pct-text" x="50" y="63">100</text>
+      </svg>
+      <p id="output"></p>
+      <p id="image"><img src="" alt="picsum image loading" /></p>
+    </main>
+  </body>
+</html>
